@@ -6,8 +6,8 @@ export default function HeroSection() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/images/ivan-pro-hero.png"
-          alt="Майстор боядисва стена - Иван Про"
+          src="/images/yv-construction-hero.png"
+          alt="Майстор боядисва стена - YV Construction"
           className="w-full h-full object-cover object-[61%_center] sm:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a2744]/95 via-[#1a2744]/70 to-[#1a2744]/25" />
@@ -23,12 +23,12 @@ export default function HeroSection() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight text-balance">
-            Шпакловка, боядисване и изолации
+            Строителство и ремонти
           </h1>
 
           <p className="text-lg sm:text-xl text-white/80 leading-relaxed max-w-xl">
-            Иван Про извършва професионална шпакловка, боядисване, топлоизолация
-            и хидроизолация за домове, входове и търговски обекти.{" "}
+            YV Construction извършва топлоизолация, вътрешни ремонти, покриви,
+            зидария, бетон, плочки, електро, ВиК и монтажни дейности.{" "}
             <span className="text-[#e67e22] font-semibold">
               Оглед и ясна оферта
             </span>{" "}

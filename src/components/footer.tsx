@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Sparkles, Wrench } from "lucide-react";
-import { PHONE_DISPLAY, PHONE_LINK, SERVICES } from "@/lib/business.ts";
+import { Clock, MapPin, Phone, Sparkles } from "lucide-react";
+import {
+  BUSINESS_DESCRIPTION,
+  BUSINESS_NAME,
+  BUSINESS_TAGLINE,
+  PHONE_DISPLAY,
+  PHONE_LINK,
+  SERVICE_AREA,
+  SERVICES,
+  WORKING_HOURS,
+} from "@/lib/business.ts";
 
 const QUICK_LINKS = [
   { label: "Начало", path: "/" },
@@ -21,19 +30,20 @@ export default function Footer() {
           <div className="space-y-5">
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#f5a623] to-[#e63c2f] text-white shadow-lg shadow-[#e63c2f]/25">
-                <Wrench className="h-5 w-5" />
+                <span className="text-lg font-black tracking-tighter">YV</span>
               </span>
               <div>
-                <h3 className="text-2xl font-black leading-none">Иван Про</h3>
+                <h3 className="text-2xl font-black leading-none">
+                  {BUSINESS_NAME}
+                </h3>
                 <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">
-                  Шпакловка и ремонти
+                  {BUSINESS_TAGLINE}
                 </p>
               </div>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-white/58">
-              Професионална шпакловка, боядисване, топлоизолация и хидроизолация
-              за жилища, входове, офиси и търговски обекти. Работим чисто,
-              коректно и с ясна уговорка.
+              {BUSINESS_DESCRIPTION} Работим чисто, коректно, с гаранция на
+              всяка услуга и точност в сроковете.
             </p>
             <div className="space-y-3">
               <a
@@ -44,8 +54,12 @@ export default function Footer() {
                 {PHONE_DISPLAY}
               </a>
               <div className="flex items-center gap-2.5 text-sm text-white/50">
+                <Clock className="h-4 w-4" />
+                {WORKING_HOURS}
+              </div>
+              <div className="flex items-center gap-2.5 text-sm text-white/50">
                 <MapPin className="h-4 w-4" />
-                България, огледи и работа по уговорка
+                {SERVICE_AREA}
               </div>
             </div>
           </div>
@@ -108,8 +122,10 @@ export default function Footer() {
 
       <div className="relative border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs font-medium text-white/38 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>&copy; {currentYear} Иван Про. Всички права запазени.</p>
-          <p>Шпакловка, боядисване и изолации</p>
+          <p>
+            &copy; {currentYear} {BUSINESS_NAME}. Всички права запазени.
+          </p>
+          <p>Строителство и ремонти в цялата страна</p>
         </div>
       </div>
     </footer>

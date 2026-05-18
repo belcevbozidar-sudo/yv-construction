@@ -15,49 +15,59 @@ import {
   Wrench,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { PHONE_DISPLAY, PHONE_LINK } from "@/lib/business.ts";
+import { Link } from "react-router-dom";
+import {
+  BUSINESS_DESCRIPTION,
+  BUSINESS_NAME,
+  BUSINESS_PROMISES,
+  PHONE_DISPLAY,
+  PHONE_LINK,
+  PRICE_CATEGORIES,
+  SERVICE_AREA,
+  WORKING_HOURS,
+} from "@/lib/business.ts";
 
-const heroImage = "/images/ivan-pro-hero.png";
+const heroImage = "/images/yv-construction-hero.png";
 
 const services = [
   {
-    icon: Layers3,
-    title: "Шпакловка",
-    text: "Фина и груба шпакловка, изправяне на стени, шлайфане и подготовка за боя.",
+    icon: ShieldCheck,
+    title: "Външна топлоизолация",
+    text: "EPS системи, каменна вата, дюбелиране, мрежа, шпакловка и декоративна мазилка.",
     color: "from-[#e63c2f] to-[#f5a623]",
     image:
-      "https://images.pexels.com/photos/5691611/pexels-photo-5691611.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/5493665/pexels-photo-5493665.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
     icon: Brush,
-    title: "Боядисване",
-    text: "Чисто боядисване на апартаменти, къщи, входове, офиси и търговски обекти.",
+    title: "Вътрешни ремонти",
+    text: "Шпакловка, боядисване, гипсокартон, окачени тавани и вътрешна изолация.",
     color: "from-[#2563eb] to-[#22c55e]",
     image:
       "https://images.pexels.com/photos/7218579/pexels-photo-7218579.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
-    icon: ShieldCheck,
-    title: "Топлоизолация",
-    text: "Фасадна и вътрешна изолация с мрежа, лепило, шпакловка и завършваща мазилка.",
+    icon: Layers3,
+    title: "Плочки и настилки",
+    text: "Лепене на плочки, фугиране, ламинат, винил и паркет с подготвена основа.",
     color: "from-[#f5a623] to-[#facc15]",
     image:
-      "https://images.pexels.com/photos/5493665/pexels-photo-5493665.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1600566753151-384129cf4e3e?auto=format&fit=crop&w=1200&q=85",
   },
   {
-    icon: Droplets,
-    title: "Хидроизолация",
-    text: "Защита от влага и течове за тераси, бани, покриви и проблемни участъци.",
+    icon: Hammer,
+    title: "Покриви и груб строеж",
+    text: "Покриви, зидария, бетон, огради, къртене, електро, ВиК и монтажни дейности.",
     color: "from-[#0ea5e9] to-[#2ecc40]",
     image:
-      "https://images.pexels.com/photos/16239802/pexels-photo-16239802.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1200&q=85",
   },
 ];
 
 const process = [
   [
     "01",
-    "Оглед",
+    "Безплатен оглед",
     "Виждаме обекта, основата и детайлите, които променят цената.",
   ],
   [
@@ -96,13 +106,15 @@ const gallery = [
 ];
 
 export default function Index() {
+  const featuredPrices = PRICE_CATEGORIES.slice(0, 4);
+
   return (
     <div className="overflow-hidden bg-[#f4f7fb]">
       <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-[#0a1628] pt-24 sm:pt-28">
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt="Иван Про - шпакловка, боядисване и изолации"
+            alt={`${BUSINESS_NAME} - строителство и ремонти`}
             className="h-full w-full object-cover object-[62%_center] sm:object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#07111f]/95 via-[#0f1b4d]/78 to-[#1a2a6c]/35" />
@@ -118,20 +130,19 @@ export default function Index() {
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-amber-200 backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-[#2ecc40]" />
-              Шпакловка, боя, изолации и довършителни работи
+              {BUSINESS_NAME} - строителство и ремонти
             </div>
 
             <h1 className="mt-7 text-balance text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-7xl">
-              Шпакловка, боядисване и{" "}
+              Всякакъв вид{" "}
               <span className="bg-gradient-to-r from-amber-300 via-[#f5a623] to-[#e63c2f] bg-clip-text text-transparent">
-                изолации
+                строителни дейности
               </span>
             </h1>
 
             <p className="mt-6 max-w-2xl border-l-4 border-[#f5a623] pl-5 text-lg leading-relaxed text-white/78 sm:text-xl">
-              Иван Про извършва професионални довършителни ремонти за домове,
-              входове, офиси и търговски обекти. Работим с внимание към детайла,
-              чисто изпълнение и ясна оферта преди започване.
+              {BUSINESS_DESCRIPTION} Обадете се за безплатен оглед, консултация
+              и точна цена според обекта.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -142,20 +153,20 @@ export default function Index() {
                 <Phone className="h-5 w-5" />
                 {PHONE_DISPLAY}
               </a>
-              <a
-                href="#uslugi"
+              <Link
+                to="/tseni"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-4 text-base font-bold text-white backdrop-blur-md transition hover:bg-white/18"
               >
-                Виж услугите
+                Виж всички цени
                 <ArrowRight className="h-5 w-5" />
-              </a>
+              </Link>
             </div>
 
             <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 text-white">
               {[
-                ["10+", "години опит"],
-                ["300+", "обекта"],
-                ["100%", "ясна уговорка"],
+                ["8-20ч", "работно време"],
+                ["100%", "гаранция"],
+                ["цялата", "страна"],
               ].map(([number, label]) => (
                 <div
                   key={label}
@@ -199,7 +210,9 @@ export default function Index() {
                     <div className="text-lg font-black text-white">
                       {label as string}
                     </div>
-                    <div className="mt-1 text-sm text-white/55">Иван Про</div>
+                    <div className="mt-1 text-sm text-white/55">
+                      {BUSINESS_NAME}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -212,8 +225,8 @@ export default function Index() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 px-4 py-6 sm:grid-cols-3 sm:px-6">
           {[
             [CheckCircle2, "Безплатен оглед"],
-            [ShieldCheck, "Качествени материали"],
-            [Sparkles, "Финално почистване"],
+            [ShieldCheck, "100% гаранция"],
+            [Sparkles, SERVICE_AREA],
           ].map(([Icon, text]) => (
             <div
               key={text as string}
@@ -233,12 +246,12 @@ export default function Index() {
               Какво предлагаме
             </span>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-[#0a1628] sm:text-5xl">
-              Основни ремонтни услуги
+              Строителство и ремонти
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-[#526174]">
-              От подготовката на основата до последния слой боя, подхождаме
-              организирано и прецизно, за да получите стабилен и красив краен
-              резултат.
+              Поемаме както довършителни ремонти, така и по-широк обхват от
+              строителни дейности - от топлоизолация и настилки до покриви,
+              зидария, електро и ВиК.
             </p>
           </div>
 
@@ -277,6 +290,74 @@ export default function Index() {
         </div>
       </section>
 
+      <section className="bg-white py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+            <div>
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-[#e63c2f]">
+                Ценоразпис
+              </span>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#0a1628] sm:text-5xl">
+                Ясни начални цени за основните строителни дейности.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-[#526174]">
+                На страницата с цени ще намерите пълния ценоразпис за
+                топлоизолация, вътрешни ремонти, плочки, покриви, зидария,
+                електро, ВиК и допълнителни условия. Крайната оферта се
+                потвърждава след оглед на обекта.
+              </p>
+
+              <div className="mt-7 flex flex-col gap-3 text-sm font-bold text-[#1a2744] sm:flex-row sm:flex-wrap">
+                <span className="rounded-full bg-[#eef4ff] px-4 py-2">
+                  {WORKING_HOURS}
+                </span>
+                <span className="rounded-full bg-[#fff4e0] px-4 py-2">
+                  Безплатен оглед
+                </span>
+              </div>
+
+              <Link
+                to="/tseni"
+                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0f1b4d] to-[#2563eb] px-7 py-4 text-base font-black text-white shadow-xl shadow-[#1a2744]/18 transition hover:scale-[1.02]"
+              >
+                Виж всички цени
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {featuredPrices.map((category) => (
+                <article
+                  key={category.title}
+                  className="overflow-hidden rounded-2xl border border-[#dbe5f2] bg-[#f8fbff] shadow-lg shadow-[#1a2744]/5"
+                >
+                  <div
+                    className="flex items-center gap-3 px-5 py-4 text-white"
+                    style={{ backgroundColor: category.accent }}
+                  >
+                    <category.icon className="h-5 w-5" />
+                    <h3 className="font-black">{category.title}</h3>
+                  </div>
+                  <div className="divide-y divide-[#dbe5f2] px-5">
+                    {category.items.slice(0, 4).map(([name, price]) => (
+                      <div
+                        key={name}
+                        className="flex items-start justify-between gap-4 py-3 text-sm"
+                      >
+                        <span className="text-[#526174]">{name}</span>
+                        <span className="shrink-0 font-black text-[#dc2626]">
+                          {price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#0f1b4d] py-20 text-white sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -291,6 +372,14 @@ export default function Index() {
               начина на работа. Така клиентът знае какво следва, а обектът върви
               спокойно и подредено.
             </p>
+            <div className="mt-7 grid gap-3 text-sm font-bold text-white/72">
+              {BUSINESS_PROMISES.slice(0, 5).map((promise) => (
+                <div key={promise} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-[#2ecc40]" />
+                  {promise}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -365,7 +454,7 @@ export default function Index() {
                   Свържете се с нас
                 </span>
                 <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-tight sm:text-5xl">
-                  Нуждаете се от шпакловка, боядисване или изолация?
+                  Нуждаете се от ремонт или строителна услуга?
                 </h2>
                 <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/65">
                   Обадете се за оглед и конкретна оферта. Ще обсъдим обекта,

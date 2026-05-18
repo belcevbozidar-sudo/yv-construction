@@ -1,67 +1,97 @@
-import { Phone } from "lucide-react";
-import { PHONE_LINK } from "@/lib/business.ts";
-
-const PRICE_ITEMS = [
-  {
-    service: "Шпакловка",
-    note: "Цена според състоянието на основата, брой ръце и нужната подготовка.",
-  },
-  {
-    service: "Боядисване",
-    note: "Офертата зависи от квадратурата, вида боя и нужните поправки преди нанасяне.",
-  },
-  {
-    service: "Топлоизолация",
-    note: "Цената се определя след оглед, избор на система и достъп до фасадата.",
-  },
-  {
-    service: "Хидроизолация",
-    note: "Изчислява се според площ, причина за влагата и подходящия материал.",
-  },
-];
-
-const FACTORS = [
-  "квадратура и височина",
-  "състояние на стените или фасадата",
-  "вид материали и финиш",
-  "достъп, срок и обем на обекта",
-];
+import { CheckCircle2, Clock, Phone, ShieldCheck } from "lucide-react";
+import {
+  BUSINESS_NAME,
+  BUSINESS_PROMISES,
+  PHONE_DISPLAY,
+  PHONE_LINK,
+  PRICE_CATEGORIES,
+  SERVICE_AREA,
+  WORKING_HOURS,
+} from "@/lib/business.ts";
 
 export default function Prices() {
   return (
-    <div>
-      <section className="py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <span className="text-sm font-semibold text-[#e67e22] uppercase tracking-wider">
-              Цени
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-foreground mt-3 mb-5">
-              Коректна оферта след оглед
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              За да бъде цената точна и честна, Иван Про изготвя оферта след
-              оглед на обекта. Така се виждат реалното състояние, нужните
-              материали и сроковете.
-            </p>
+    <div className="bg-[#f4f7fb]">
+      <section className="relative overflow-hidden bg-[#07111f] py-16 text-white sm:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(220,38,38,0.25),transparent_28%),radial-gradient(circle_at_88%_15%,rgba(37,99,235,0.28),transparent_32%)]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+            <div className="max-w-3xl">
+              <span className="text-sm font-black uppercase tracking-[0.22em] text-amber-300">
+                Пълен ценоразпис
+              </span>
+              <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-6xl">
+                Цени за строителство и ремонти
+              </h1>
+              <p className="mt-5 text-lg leading-relaxed text-white/70">
+                {BUSINESS_NAME} предлага ясни начални цени за основните
+                строителни дейности. Крайната цена се потвърждава след оглед,
+                според състоянието на обекта, достъпа и избраните материали.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/12 bg-white/[0.08] p-6 backdrop-blur-md">
+              <div className="flex items-center gap-3 text-amber-300">
+                <Clock className="h-5 w-5" />
+                <span className="font-black">{WORKING_HOURS}</span>
+              </div>
+              <a
+                href={PHONE_LINK}
+                className="mt-5 flex items-center gap-3 text-3xl font-black text-white"
+              >
+                <Phone className="h-7 w-7 text-[#e63c2f]" />
+                {PHONE_DISPLAY}
+              </a>
+              <p className="mt-4 text-sm font-semibold text-white/55">
+                Обадете се за безплатен оглед и консултация. {SERVICE_AREA}.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="pb-16 sm:pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {PRICE_ITEMS.map((item) => (
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {PRICE_CATEGORIES.map((category) => (
               <article
-                key={item.service}
-                className="bg-white/70 backdrop-blur-sm border border-border/50 rounded-2xl p-6"
+                key={category.title}
+                className="overflow-hidden rounded-2xl border border-[#dbe5f2] bg-white shadow-xl shadow-[#1a2744]/6"
               >
-                <h2 className="text-xl font-bold text-foreground mb-2">
-                  {item.service}
-                </h2>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {item.note}
-                </p>
+                <div
+                  className="flex items-center gap-3 px-5 py-4 text-white"
+                  style={{ backgroundColor: category.accent }}
+                >
+                  <category.icon className="h-5 w-5" />
+                  <h2 className="text-lg font-black">{category.title}</h2>
+                </div>
+
+                {category.featured && (
+                  <div className="bg-[#e63c2f] px-5 py-4 text-center text-white">
+                    <div className="text-sm font-black uppercase tracking-[0.12em]">
+                      {category.featured[0]}
+                    </div>
+                    <div className="mt-1 text-4xl font-black">
+                      {category.featured[1]}
+                    </div>
+                  </div>
+                )}
+
+                <div className="divide-y divide-[#dbe5f2] px-5">
+                  {category.items.map(([name, price]) => (
+                    <div
+                      key={name}
+                      className="flex items-start justify-between gap-4 py-3 text-sm"
+                    >
+                      <span className="leading-snug text-[#334155]">
+                        {name}
+                      </span>
+                      <span className="shrink-0 text-right font-black text-[#dc2626]">
+                        {price}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </article>
             ))}
           </div>
@@ -69,36 +99,44 @@ export default function Prices() {
       </section>
 
       <section className="pb-16 sm:pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="bg-primary/5 border border-primary/10 rounded-3xl p-8">
-              <h2 className="text-2xl font-bold text-foreground mb-5">
-                Какво влияе на цената?
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {FACTORS.map((factor) => (
-                  <span
-                    key={factor}
-                    className="bg-white/80 border border-border/50 rounded-full px-4 py-2 text-sm font-medium text-foreground"
-                  >
-                    {factor}
-                  </span>
-                ))}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+            <div className="rounded-3xl bg-[#0f1b4d] p-8 text-white shadow-2xl shadow-[#1a2744]/20 sm:p-10">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#2ecc40]">
+                <ShieldCheck className="h-7 w-7" />
               </div>
-            </div>
-            <div className="bg-[#1a2744] text-white rounded-3xl p-8 space-y-4">
-              <h2 className="text-2xl font-bold">Получете конкретна цена</h2>
-              <p className="text-white/70 leading-relaxed">
-                Обадете се, кажете каква услуга ви трябва и ще уговорим удобен
-                час за оглед.
+              <h2 className="mt-6 text-3xl font-black">
+                Качество, което се гарантира.
+              </h2>
+              <p className="mt-4 max-w-2xl text-white/65">
+                Работим с ясна уговорка, точност в сроковете и гаранция на всяка
+                услуга. Цените са ориентир за планиране, а финалната оферта се
+                дава след оглед.
               </p>
               <a
                 href={PHONE_LINK}
-                className="inline-flex items-center gap-2 bg-[#e67e22] hover:bg-[#d35400] text-white font-bold px-7 py-3.5 rounded-full shadow-lg transition-all"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-[#e63c2f] px-7 py-4 font-black text-white shadow-xl shadow-[#e63c2f]/25"
               >
-                <Phone className="size-5" />
-                Обади се за оферта
+                <Phone className="h-5 w-5" />
+                Обади се за оглед
               </a>
+            </div>
+
+            <div className="rounded-3xl border border-[#dbe5f2] bg-white p-8 shadow-xl shadow-[#1a2744]/6 sm:p-10">
+              <h2 className="text-2xl font-black text-[#0a1628]">
+                Допълнителни гаранции
+              </h2>
+              <div className="mt-6 grid gap-3">
+                {BUSINESS_PROMISES.map((promise) => (
+                  <div
+                    key={promise}
+                    className="flex items-start gap-3 rounded-xl bg-[#f4f7fb] px-4 py-3 text-sm font-bold text-[#334155]"
+                  >
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[#2ecc40]" />
+                    {promise}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

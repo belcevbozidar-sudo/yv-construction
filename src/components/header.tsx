@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Phone, Wrench, X } from "lucide-react";
-import { PHONE_DISPLAY, PHONE_LINK } from "@/lib/business.ts";
+import { Clock, Menu, Phone, X } from "lucide-react";
+import {
+  BUSINESS_TAGLINE,
+  PHONE_DISPLAY,
+  PHONE_LINK,
+  WORKING_HOURS,
+} from "@/lib/business.ts";
 
 const NAV_ITEMS = [
   { label: "Начало", path: "/" },
@@ -39,19 +44,19 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Link to="/" className="flex min-w-0 items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#f5a623] to-[#e63c2f] text-white shadow-lg shadow-[#e63c2f]/25">
-              <Wrench className="h-5 w-5" />
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#ffffff] to-[#e5e7eb] text-[#0a1628] shadow-lg shadow-black/10">
+              <span className="text-lg font-black tracking-tighter">YV</span>
             </span>
             <span className="min-w-0">
               <span className="block text-xl font-black leading-none tracking-tight">
-                Иван <span className="text-[#f5a623]">Про</span>
+                YV <span className="text-[#e63c2f]">Construction</span>
               </span>
               <span
                 className={`mt-1 hidden text-[10px] font-bold uppercase tracking-[0.2em] sm:block ${
                   isScrolled ? "text-[#526174]" : "text-white/55"
                 }`}
               >
-                Шпакловка и ремонти
+                {BUSINESS_TAGLINE}
               </span>
             </span>
           </Link>
@@ -77,6 +82,16 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <div
+              className={`hidden items-center gap-2 rounded-full px-3 py-2 text-xs font-bold xl:flex ${
+                isScrolled
+                  ? "bg-[#eef4ff] text-[#526174]"
+                  : "bg-white/10 text-white/70"
+              }`}
+            >
+              <Clock className="h-4 w-4" />
+              {WORKING_HOURS.replace("Понеделник - неделя, ", "")}
+            </div>
             <a
               href={PHONE_LINK}
               className="hidden items-center gap-2 rounded-full bg-gradient-to-r from-[#f5a623] to-[#e63c2f] px-5 py-2.5 text-sm font-black text-white shadow-lg shadow-[#e63c2f]/20 transition hover:scale-[1.02] sm:inline-flex"
